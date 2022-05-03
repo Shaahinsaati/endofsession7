@@ -55,17 +55,12 @@ def blog_single(request,pid):
     return render(request,'blog/blog-single.html',context)
 
 def test(request):
-    posts = Post.objects.all()
-    paginator = Paginator(posts,1)
-    page_number = request.GET.get('page',1)
-    try:
-        page = paginator.page(page_number)
-    except EmptyPage:
-        page = paginator.page(1)
+    if request.method == 'POST':
+       print(request.POST.get('name'))
+    
 
 
-    context = {'posts': posts}
-    return render(request,'blog/test.html',context)
+    return render(request,'blog/test.html')
 
 
 def blog_search(request):
